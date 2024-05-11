@@ -97,12 +97,12 @@ namespace YTMusic
                 }
 
                 // STart ytdl with our arguments
-                String no_playlist_arg = downloadFullPlaylist ? "" : "--no-playlist";
-                String dir = txtOutputDir.Text.Trim();               
+                string no_playlist_arg = downloadFullPlaylist ? "" : "--no-playlist";
+                string dir = txtOutputDir.Text.Trim();               
                 ProcessStartInfo startInfo = new ProcessStartInfo
                 {
-                    FileName = "yt-dlp.exe",
-                    Arguments = $"--extract-audio --audio-format mp3 --no-playlist -o \"{dir}\\%(title)s.mp3\" \"{url}\"",
+                    FileName = "bin\\yt-dlp.exe",
+                    Arguments = $"--extract-audio --audio-format mp3 {no_playlist_arg} -o \"{dir}\\%(title)s.mp3\" \"{url}\"",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,

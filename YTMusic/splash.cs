@@ -107,19 +107,24 @@ namespace YTMusic
                     Config cfg = Config.get();
                     TimeSpan difference = DateTime.Now - cfg.LastDownload;
                     bool should_redownload = difference.TotalDays > 2;
-                    if (should_redownload || !File.Exists("yt-dlp.exe"))
+                    // Create bin dir if not there already
+                    if (!Directory.Exists("bin"))
+                    {
+                        Directory.CreateDirectory("bin");
+                    }
+                    if (should_redownload || !File.Exists("bin\\yt-dlp.exe"))
                     {
                         SetProgressValue(5, "Téléchargement du programme Youtube...");
-                        DownloadFile("https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe", "yt-dlp.exe");
+                        DownloadFile("https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe", "bin\\yt-dlp.exe");
                     }
                     SetProgressValue(40, "Téléchargement des codecs audio...");
-                    if (should_redownload || !File.Exists("ffmpeg.exe"))
+                    if (should_redownload || !File.Exists("bin\\ffmpeg.exe"))
                     {
                         SetProgressValue(45, "Téléchargement des codecs audio...");
-                        DownloadFile("https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip", "ffmpeg.zip");
+                        DownloadFile("https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip", "bin\\ffmpeg.zip");
                         SetProgressValue(75, "Extraction des codecs audio...");
-                        ExtractExeFilesFromZip("ffmpeg.zip", Directory.GetCurrentDirectory());
-                        File.Delete("ffmpeg.zip");
+                        ExtractExeFilesFromZip("bin\\ffmpeg.zip", Directory.GetCurrentDirectory() + "\\bin");
+                        File.Delete("bin\\ffmpeg.zip");
                         SetProgressValue(100, "Sauvegarde de la configuration...");
                     }
                     if (should_redownload) {

@@ -9,8 +9,8 @@ Do not use this application to download copyrighted content. Only use this on co
 **Installation**
 
 1. Download the latest release at: https://github.com/KevGoDev/ytmusic-desktop/releases/latest.
-2. Copy `YTMusic.exe` to a folder on your computer, example: `Desktop\ytmusic\YTMusic.exe`
-3. Run `YTMusic.exe`
+2. Extract the **entire** `YTMusic` folder to your computer, example: `Desktop\YTMusic`
+3. Run the `YTMusic.exe` file inside your YTMusic folder.
 
 **Screenshot**
 
